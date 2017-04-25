@@ -24,6 +24,10 @@ class Tamagotchi
     @activity_level
   end
 
+  define_method(:time_created) do
+    @time_created
+  end
+
   define_method(:set_food_level) do |food_level|
     @food_level = food_level
   end
@@ -37,12 +41,10 @@ class Tamagotchi
   end
 
   define_method(:time_passes) do |current_time = Time.new()|
-    current_time = @time_created + 60
     time_passed = current_time - @time_created
-    if time_passed >= 60
-      @food_level -= 1
-      @sleep_level -= 1
-    end
+    amount_of_times = time_passed / 60
+    @food_level -= amount_of_times
+    @sleep_level -= amount_of_times
     @food_level
   end
 
